@@ -1,0 +1,12 @@
+{
+  "name": "e-commerce-books",
+  "version": "1.0.0",
+  "keywords": [],
+  "workspaces": [
+    "apps/client",
+    "apps/api"
+  ],
+  "author": "Brayan Yin Lin",
+  "license": "ISC",
+  "description": ""
+}
