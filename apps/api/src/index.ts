@@ -1,4 +1,5 @@
-import express from 'express'
+import { server } from './main'
 
-const app = express()
-export { app }
+server.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000')
+})
