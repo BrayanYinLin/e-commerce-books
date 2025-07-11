@@ -11,6 +11,9 @@ export function Navbar() {
         <Link to="/chat" className="text-white hover:underline">
           Chat
         </Link>
+        <Link to="/products" className="text-white hover:underline">
+          Nuevo Producto
+        </Link>
       </div>
     </nav>
   )
