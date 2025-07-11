@@ -1,0 +1,17 @@
+type Book = {
+  id: string
+  name: string
+  price: number
+  stock: number
+}
+
+export const Row = ({ id, name, price, stock }: Book) => {
+  return (
+    <tr>
+      <th>{id}</th>
+      <td>{name}</td>
+      <td>{price}</td>
+      <td>{stock}</td>
+    </tr>
+  )
+}

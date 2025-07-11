@@ -1,3 +1,9 @@
+import { Table } from '../components/Table'
+
 export function DashboardPage() {
-  return <h1>HomePage</h1>
+  return (
+    <main className="col-span-8">
+      <Table />
+    </main>
+  )
 }
