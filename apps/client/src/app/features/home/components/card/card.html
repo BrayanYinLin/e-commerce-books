@@ -1,0 +1,19 @@
+<div class="container w-80 flex justify-between">
+    <div class="card bg-base-300 w-96 shadow-sm">
+    <figure>
+        <img
+            src={{imageUrl()}}
+            alt="Canción de Hielo y Fuego" />
+    </figure>
+    <div class="card-body">
+        <h2 class="card-title">
+            {{ title() }}
+            <div class="badge badge-secondary">${{ price() }}</div>
+        </h2>
+        <p>{{ description() }}</p>
+        <div class="card-actions justify-end">
+            <button class="btn btn-primary">Buy Now</button>
+        </div>
+    </div>
+</div>
+</div>
