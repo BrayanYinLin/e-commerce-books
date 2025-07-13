@@ -1,12 +1,12 @@
 services:
   mongo-db:
-        image: mongo
-        restart: always
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: bookuser
-            MONGO_INITDB_ROOT_PASSWORD: bookpassword
-            # MONGO_INITDB_DATABASE: bookstore
-        volumes:
-            - ./mongo:/data/db
-        ports:
-            - 27017:27017
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: bookuser
+      MONGO_INITDB_ROOT_PASSWORD: bookpassword
+      # MONGO_INITDB_DATABASE: bookstore
+    volumes:
+      - ./mongo:/data/db
+    ports:
+      - 27017:27017

@@ -1,5 +1,5 @@
-import type { FormEvent } from "react"
-import { createProduct } from "../services/CreateProducts"
+import type { FormEvent } from 'react'
+import { createProduct } from '../services/CreateProducts'
 
 export const Form = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -8,16 +8,17 @@ export const Form = () => {
 
     createProduct({
       name: formData.get('name') as string,
-      price : Number(formData.get('price')) ?? 0,
-      stock : Number(formData.get('stock')) ?? 0,
-      image : formData.get('image') as string
-    })
-    .then(product => console.log(product))
-
+      price: Number(formData.get('price')) ?? 0,
+      stock: Number(formData.get('stock')) ?? 0,
+      image: formData.get('image') as string
+    }).then((product) => console.log(product))
   }
 
   return (
-    <form className="max-w-md mx-auto dark:bg-[#1d232a] bg-white p-6 rounded-xl shadow-md space-y-6" onSubmit={handleSubmit}>
+    <form
+      className="max-w-md mx-auto dark:bg-[#1d232a] bg-white p-6 rounded-xl shadow-md space-y-6"
+      onSubmit={handleSubmit}
+    >
       {/* Campo: Nombre */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Nombre del producto</legend>

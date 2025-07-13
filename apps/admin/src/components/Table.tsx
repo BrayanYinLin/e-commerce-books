@@ -19,19 +19,15 @@ export const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            loading && <LoaderRow />
-          }
+          {loading && <LoaderRow />}
 
-          {
-            error && <ErrorAlert message={error && 'Hubo un error inesperado'} />
-          }
+          {error && (
+            <ErrorAlert message={error && 'Hubo un error inesperado'} />
+          )}
 
-          {
-            products.map(({ id, name, price, stock}) => (
-              <Row key={id} id={id} name={name} price={price} stock={stock} />
-            ))
-          }
+          {products.map(({ id, name, price, stock }) => (
+            <Row key={id} id={id} name={name} price={price} stock={stock} />
+          ))}
         </tbody>
       </table>
     </div>

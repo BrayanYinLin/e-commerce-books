@@ -14,7 +14,7 @@ export const createProduct = async (product: Product) => {
       },
       body: JSON.stringify(product)
     })
-    const data = await response.json() as Product
+    const data = (await response.json()) as Product
 
     return data
   } catch (e) {
