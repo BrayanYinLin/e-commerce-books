@@ -4,3 +4,8 @@ export interface Product {
   stock: number
   image: string
 }
+
+export type Message = {
+  message: string
+  isSender: boolean
+}
