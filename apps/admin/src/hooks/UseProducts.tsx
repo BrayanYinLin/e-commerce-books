@@ -1,27 +1,27 @@
-import { useState, useEffect } from "react";
-import { getProducts } from "../services/GetProducts";
-import type { Product } from "../types";
+import { useState, useEffect } from 'react'
+import { getProducts } from '../services/GetProducts'
+import type { Product } from '../types'
 
 export function useProducts() {
-    const [products, setProducts] = useState<Product[]>([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<Error | null>(null)
+  const [products, setProducts] = useState<Product[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null)
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const data = await getProducts()
-                setProducts(data)
-                setError(null)
-            } catch (err) {
-                setError(err instanceof Error ? err : new Error('An error occurred'))
-            } finally {
-                setLoading(false)
-            }
-        }
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts()
+        setProducts(data)
+        setError(null)
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error('An error occurred'))
+      } finally {
+        setLoading(false)
+      }
+    }
 
-        fetchProducts()
-    }, [])
+    fetchProducts()
+  }, [])
 
-    return { products, loading, error }
+  return { products, loading, error }
 }
