@@ -1,20 +1,26 @@
 import { Link } from 'react-router'
-
+//[&>*]:p-3
 export function Navbar() {
   return (
-    <nav className="col-span-2 bg-gray-800 text-white p-4">
-      <h1>Admin Navbar</h1>
-      <div className="flex flex-col space-y-2 mt-4">
-        <Link to="/" className="text-white hover:underline">
-          Dashboard
-        </Link>
-        <Link to="/chat" className="text-white hover:underline">
-          Chat
-        </Link>
-        <Link to="/products" className="text-white hover:underline">
-          Nuevo Producto
-        </Link>
-      </div>
+    <nav className="col-span-2 bg-gray-800 text-white">
+      <h1 className="p-3">Admin Navbar</h1>
+      <ul className="menu w-full [&_li>*]:rounded-none p-0">
+        <li>
+          <Link to="/" className="text-base text-white hover:underline">
+            Dashboard
+          </Link>
+        </li>
+        <li>
+          <Link to="/chat" className="text-base text-white hover:underline">
+            Chat
+          </Link>
+        </li>
+        <li>
+          <Link to="/products" className="text-base text-white hover:underline">
+            Nuevo Producto
+          </Link>
+        </li>
+      </ul>
     </nav>
   )
 }

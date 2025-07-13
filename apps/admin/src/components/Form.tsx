@@ -8,10 +8,13 @@ export const Form = () => {
 
     createProduct({
       name: formData.get('name') as string,
-      price: Number(formData.get('price')) ?? 0,
-      stock: Number(formData.get('stock')) ?? 0,
+      price: Number(formData.get('price')),
+      stock: Number(formData.get('stock')),
       image: formData.get('image') as string
-    }).then((product) => console.log(product))
+    }).then((product) => {
+      console.log(product)
+    })
+    event.currentTarget.reset()
   }
 
   return (

@@ -8,7 +8,7 @@ type Book = {
 export const Row = ({ id, name, price, stock }: Book) => {
   return (
     <tr>
-      <th>{id}</th>
+      <td>{id}</td>
       <td>{name}</td>
       <td>{price}</td>
       <td>{stock === 0 ? 'Agotado' : stock}</td>
