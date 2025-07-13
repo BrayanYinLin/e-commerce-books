@@ -11,7 +11,8 @@ export const Row = ({ id, name, price, stock }: Book) => {
       <th>{id}</th>
       <td>{name}</td>
       <td>{price}</td>
-      <td>{stock}</td>
+      <td>{stock === 0 ? 'Agotado' : stock}</td>
+      <td></td>
     </tr>
   )
 }
