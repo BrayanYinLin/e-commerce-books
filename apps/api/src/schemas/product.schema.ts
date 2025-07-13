@@ -6,7 +6,7 @@ const productSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    default: randomUUID()
+    default: () => randomUUID()
   },
   name: {
     type: String,

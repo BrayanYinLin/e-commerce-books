@@ -7,8 +7,8 @@ import { Component, input } from '@angular/core';
   styles: ``
 })
 export class Card {
-  title = input.required<string>();
-  description = input.required<string>();
-  imageUrl = input.required<string>();
+  name = input.required<string>();
+  image = input.required<string>();
   price = input.required<number>();
+  stock = input.required<number>();
 }
