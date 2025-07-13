@@ -29,7 +29,7 @@ export const Table = () => {
 
           {
             products.map(({ id, name, price, stock}) => (
-              <Row id={id} name={name} price={price} stock={stock} />
+              <Row key={id} id={id} name={name} price={price} stock={stock} />
             ))
           }
         </tbody>
