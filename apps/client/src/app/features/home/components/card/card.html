@@ -1,20 +1,19 @@
 <div class="container w-80 flex justify-between">
-    <div class="card bg-base-300 w-96 shadow-sm">
-    <figure>
-        <img
-            src={{image()}}
-
-        />
-    </figure>
-    <div class="card-body">
-        <h2 class="card-title">
-            {{ name() }}
-            <div class="badge badge-secondary">${{ price() }}</div>
-        </h2>
-        <p>{{ stock() }}</p>
-        <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
+    <div class="card bg-base-300 w-96 shadow-md min-h-[26rem]">
+        <figure class="bg-base-200">
+            <img
+                src={{image()}}
+                class="max-h-56" />
+        </figure>
+        <div class="card-body">
+            <div class="flex justify-between items-start mb-2">
+                <h2 class="card-title text-lg font-semibold">{{ name() }}</h2>
+                <span class="badge badge-secondary font-semibold">S/{{ price() }}</span>
+            </div>
+            <p>Stock: {{ stock() }}</p>
+            <div class="card-actions justify-end">
+                <button class="btn btn-sm btn-primary p-3">Comprar</button>
+            </div>
         </div>
     </div>
-</div>
 </div>
