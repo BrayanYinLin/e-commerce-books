@@ -4,7 +4,7 @@ export interface Product {
   id: string;
   name: string;
   stock: number;
-  price: number
+  price: number;
   image: string;
 }
 
@@ -16,17 +16,37 @@ export interface Product {
 // }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
+  // Método para obtener todos los productos
   async findAll(): Promise<Product[]> {
     try {
       const response = await fetch('http://localhost:3000/api/products');
-      const data = await response.json()
+      const data = await response.json();
       return data as unknown as Product[];
     } catch (e) {
-      console.error(e)
-      return []
+      console.error(e);
+      return [];
+    }
+  }
+
+  // Método para comprar un producto
+  async buyProduct(id: string): Promise<Product | null> {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/products/buy/${id}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        },
+      );
+      if (!response.ok) throw new Error('Error al comprar el producto');
+      const data = await response.json();
+      return data as Product;
+    } catch (e) {
+      console.error(e);
+      return null;
     }
   }
 }
