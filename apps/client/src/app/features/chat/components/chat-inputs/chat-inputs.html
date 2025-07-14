@@ -1,4 +1,4 @@
 <div class="flex gap-2">
-<input type="text" placeholder="Type here" class="input w-9/10" />
-<button class="btn btn-primary w-1/10">Send</button>
+<input [(ngModel)]="message" (keyup.enter)="send()" type="text" placeholder="Type here" class="input w-9/10" />
+<button (click)="send()" class="btn btn-primary w-1/10">Send</button>
 </div>
