@@ -38,9 +38,9 @@ class ProductController implements ProductCtrl {
       return res.status(400).json({ error: 'Product out of stock' })
     }
 
-    await this.product.findByIdAndUpdate(
-      foundProduct._id,
-      { stock: foundProduct.stock - 1 },
+    await this.product.findOneAndUpdate(
+      { id },
+      { $inc: { stock: -1 } },
       { new: true }
     )
 

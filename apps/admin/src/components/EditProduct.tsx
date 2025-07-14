@@ -1,6 +1,6 @@
 import { type FormEvent } from 'react'
 import { Overlay } from './Overlay'
-import { editProducts } from '../services/editProducts'
+import { useProductStore } from '../contexts/productStore'
 
 type EditProductProps = {
   id: string
@@ -19,10 +19,12 @@ export function EditProduct({
   image,
   close
 }: EditProductProps) {
+  const { updateProduct } = useProductStore()
+
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
-    editProducts({
+    updateProduct({
       id,
       name: formData.get('name') as string,
       price: Number(formData.get('price')),
@@ -38,7 +40,7 @@ export function EditProduct({
   return (
     <Overlay>
       <form
-        className="fixed z-40 top-[10%] right-[33%] w-[400px] mx-auto dark:bg-[#1d232a] bg-white p-6 rounded-xl shadow-md space-y-6"
+        className="fixed z-40 top-[10%] right-[33%] w-[400px] h-[500px] mx-auto dark:bg-[#1d232a] bg-white p-6 rounded-xl shadow-md space-y-4"
         onSubmit={submit}
       >
         <button
@@ -58,7 +60,6 @@ export function EditProduct({
             defaultValue={name}
             required
           />
-          <p className="label">Nombre que se mostrará al cliente</p>
         </fieldset>
 
         {/* Campo: Precio */}
@@ -74,7 +75,6 @@ export function EditProduct({
             id="price-input"
             required
           />
-          <p className="label">En soles o dólares</p>
         </fieldset>
 
         {/* Campo: Stock */}
@@ -88,7 +88,6 @@ export function EditProduct({
             defaultValue={stock}
             required
           />
-          <p className="label">Cantidad disponible para la venta</p>
         </fieldset>
 
         {/* Campo: Imagen */}
@@ -102,11 +101,10 @@ export function EditProduct({
             defaultValue={image}
             required
           />
-          <p className="label">Imagen que verá el cliente en la tienda</p>
         </fieldset>
 
         {/* Botón de envío */}
-        <button type="submit" className="btn btn-primary w-full mt-4">
+        <button type="submit" className="btn btn-primary w-full mt-2">
           Editar producto
         </button>
       </form>
