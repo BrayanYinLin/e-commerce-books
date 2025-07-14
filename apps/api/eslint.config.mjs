@@ -1,38 +1,38 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import { defineConfig } from "eslint/config";
-import prettierPlugin from "eslint-plugin-prettier";
-import prettierConfig from "eslint-config-prettier";
+import js from '@eslint/js'
+import globals from 'globals'
+import tseslint from 'typescript-eslint'
+import { defineConfig } from 'eslint/config'
+import prettierPlugin from 'eslint-plugin-prettier'
+import prettierConfig from 'eslint-config-prettier'
 
 export default defineConfig([
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
+    files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
     plugins: { js },
-    extends: ["js/recommended"],
+    extends: ['js/recommended']
   },
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
-    languageOptions: { globals: globals.node },
+    files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
+    languageOptions: { globals: globals.node }
   },
   tseslint.configs.recommended,
   prettierConfig,
   {
     plugins: {
-      prettier: prettierPlugin,
+      prettier: prettierPlugin
     },
     rules: {
-      semi: ["error", "never"],
-      "prettier/prettier": [
-        "error",
+      semi: ['error', 'never'],
+      'prettier/prettier': [
+        'error',
         {
           semi: false,
-          endOfLine: "auto",
+          endOfLine: 'auto',
           singleQuote: true,
-          trailingComma: "none",
-        },
+          trailingComma: 'none'
+        }
       ],
-      "no-explicit-any": "off",
-    },
-  },
-]);
+      'no-explicit-any': 'off'
+    }
+  }
+])
