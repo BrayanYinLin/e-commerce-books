@@ -1,12 +1,17 @@
-import { useProducts } from '../hooks/UseProducts'
+import { useEffect } from 'react'
+import { useProductStore } from '../contexts/productStore'
 import { ErrorAlert } from './ErrorAlert'
 import { LoaderRow } from './LoaderRow'
 import { Row } from './Row'
 export const Table = () => {
-  const { products, loading, error } = useProducts()
+  const { products, loading, error, fetchProducts } = useProductStore()
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
 
   return (
-    <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+    <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 w-[100%]">
       <table className="table table-fixed">
         {/* head */}
         <thead>
@@ -16,7 +21,7 @@ export const Table = () => {
             <th>Precio</th>
             <th>Stock</th>
             <th className="!w-[80px]">Image Link</th>
-            <th>Acciones</th>
+            <th className="w-[200px]">Acciones</th>
           </tr>
         </thead>
         <tbody>

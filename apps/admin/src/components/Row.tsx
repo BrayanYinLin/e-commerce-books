@@ -1,21 +1,12 @@
 import { createPortal } from 'react-dom'
 import { EditProduct } from './EditProduct'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import type { Product } from '../types'
+import { useProductStore } from '../contexts/productStore'
 
-type Book = {
-  id: string
-  name: string
-  price: number
-  stock: number
-  image: string
-}
-
-export const Row = ({ id, name, price, stock, image }: Book) => {
+export const Row = ({ id, name, price, stock, image }: Product) => {
   const [modal, setModal] = useState<boolean>(false)
-
-  useEffect(() => {
-    console.log(modal)
-  }, [modal])
+  const { deleteProduct } = useProductStore()
 
   return (
     <tr>
@@ -28,7 +19,9 @@ export const Row = ({ id, name, price, stock, image }: Book) => {
         <button className="btn" onClick={() => setModal(true)}>
           Editar
         </button>
-        <button className="btn">Eliminar</button>
+        <button className="btn" onClick={() => deleteProduct(id)}>
+          Eliminar
+        </button>
       </td>
       {modal &&
         createPortal(
