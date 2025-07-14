@@ -1,30 +1,30 @@
-import { model, Schema } from "mongoose";
-import { randomUUID } from "node:crypto";
+import { model, Schema } from 'mongoose'
+import { randomUUID } from 'node:crypto'
 
 const productSchema = new Schema({
   id: {
     type: String,
     required: true,
     unique: true,
-    default: () => randomUUID(),
+    default: () => randomUUID()
   },
   name: {
     type: String,
-    required: true,
+    required: true
   },
   price: {
     type: Number,
-    required: true,
+    required: true
   },
   stock: {
     type: Number,
-    required: true,
+    required: true
   },
   image: {
     type: String,
-    required: false,
-  },
-});
+    required: false
+  }
+})
 
-export const ProductModel = model("Product", productSchema);
-export type ProductEntity = typeof ProductModel;
+export const ProductModel = model('Product', productSchema)
+export type ProductEntity = typeof ProductModel
