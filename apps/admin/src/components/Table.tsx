@@ -7,7 +7,7 @@ export const Table = () => {
 
   return (
     <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-      <table className="table">
+      <table className="table table-fixed">
         {/* head */}
         <thead>
           <tr>
@@ -15,6 +15,7 @@ export const Table = () => {
             <th>Nombre</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th className="!w-[80px]">Image Link</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -25,8 +26,15 @@ export const Table = () => {
             <ErrorAlert message={error && 'Hubo un error inesperado'} />
           )}
 
-          {products.map(({ id, name, price, stock }) => (
-            <Row key={id} id={id} name={name} price={price} stock={stock} />
+          {products.map(({ id, name, price, stock, image }) => (
+            <Row
+              key={id}
+              id={id}
+              name={name}
+              price={price}
+              stock={stock}
+              image={image}
+            />
           ))}
         </tbody>
       </table>
