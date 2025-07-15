@@ -10,3 +10,8 @@ export type Message = {
   message: string
   isSender: boolean
 }
+
+export interface ChatItem {
+  userId: string
+  lastMessage: string
+}

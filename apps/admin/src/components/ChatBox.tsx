@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react'
-import { ChatMassage } from './ChatMassage'
+import { MessageBubble } from './MessageBubble'
+import type { Message } from '../contexts/chatStore'
 
-type ChatMessage = { isSender: boolean; message: string }
-
-export function ChatBox({ messages }: { messages: ChatMessage[] }) {
+export function ChatBox({ messages }: { messages: Message[] }) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -17,12 +16,8 @@ export function ChatBox({ messages }: { messages: ChatMessage[] }) {
       ref={ref}
       className="row-span-9 overflow-y-scroll scrollbar-hide py-3"
     >
-      {messages.map((msg, index) => (
-        <ChatMassage
-          key={index}
-          isSender={msg.isSender}
-          message={msg.message}
-        />
+      {messages?.map((msg, index) => (
+        <MessageBubble key={index} from={msg.from} message={msg.message} />
       ))}
     </section>
   )

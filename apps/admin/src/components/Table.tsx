@@ -12,7 +12,7 @@ export const Table = () => {
 
   return (
     <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 w-[100%]">
-      <table className="table table-fixed">
+      <table className="table">
         {/* head */}
         <thead>
           <tr>
@@ -20,8 +20,8 @@ export const Table = () => {
             <th>Nombre</th>
             <th>Precio</th>
             <th>Stock</th>
-            <th className="!w-[80px]">Image Link</th>
-            <th className="w-[200px]">Acciones</th>
+            <th>Image Link</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>

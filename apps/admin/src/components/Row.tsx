@@ -14,7 +14,7 @@ export const Row = ({ id, name, price, stock, image }: Product) => {
       <td>{name}</td>
       <td>{price}</td>
       <td>{stock === 0 ? 'Agotado' : stock}</td>
-      <td className="!w-[80px] overflow-x-hidden">{image}</td>
+      <td className="truncate overflow-x-hidden max-w-[300px]">{image}</td>
       <td className="flex gap-2">
         <button className="btn" onClick={() => setModal(true)}>
           Editar

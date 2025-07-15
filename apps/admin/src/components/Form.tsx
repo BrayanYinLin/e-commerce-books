@@ -32,7 +32,7 @@ export const Form = () => {
   return (
     <>
       <form
-        className="max-w-md mx-auto dark:bg-[#1d232a] bg-white p-6 rounded-xl shadow-md space-y-3 mt-6"
+        className="max-w-md mx-auto dark:bg-[#1d232a] bg-white p-6 rounded-xl shadow-md space-y-3"
         onSubmit={handleSubmit}
       >
         {/* Campo: Nombre */}

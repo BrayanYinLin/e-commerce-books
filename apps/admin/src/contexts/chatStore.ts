@@ -1,12 +1,12 @@
 import { io, type Socket } from 'socket.io-client'
 import { create } from 'zustand'
 
-interface Message {
+export interface Message {
   from: 'user' | 'admin'
   message: string
 }
 
-interface Chat {
+export interface Chat {
   userId: string
   messages: Message[]
 }
@@ -14,17 +14,19 @@ interface Chat {
 interface ChatStore {
   socket: Socket | null
   chats: Record<string, Chat>
+  currentChat: Chat | null
 
   connect: () => void
   recieveMessage: (userId: string, message: string) => void
-  // sendMessageToUser: (userId: string, message: string) => void
-  // getChat(userId: string): Chat | undefined
+  sendMessageToUser: (userId: string, message: string) => void
+  getChat(userId: string): Chat | undefined
   // getAllChats: () => Chat[]
 }
 
 export const useChatStore = create<ChatStore>((set, get) => ({
   socket: null,
   chats: {},
+  currentChat: null,
   connect: () => {
     const socket = io('http://localhost:3000')
 
@@ -53,5 +55,39 @@ export const useChatStore = create<ChatStore>((set, get) => ({
         }
       }
     })
+
+    const currentUserActive = get().currentChat?.userId
+
+    if (currentUserActive) {
+      get().getChat(currentUserActive)
+    }
+  },
+  sendMessageToUser: (userId, message) => {
+    const socket = get().socket
+
+    if (socket) {
+      socket.emit('admin:reply', JSON.stringify({ id: userId, message }))
+      set((state) => {
+        const existingChat = state.chats[userId] || { userId, messages: [] }
+
+        return {
+          chats: {
+            ...state.chats,
+            [userId]: {
+              ...existingChat,
+              messages: [...existingChat.messages, { from: 'admin', message }]
+            }
+          }
+        }
+      })
+      get().getChat(userId)
+    }
+  },
+  getChat: (userId) => {
+    const chats = get().chats
+    set({
+      currentChat: chats[userId] || { userId, messages: [] }
+    })
+    return chats[userId]
   }
 }))
