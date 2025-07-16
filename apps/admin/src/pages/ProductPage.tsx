@@ -1,9 +1,8 @@
-import React from 'react'
 import { Form } from '../components/Form'
 
 export const ProductPage = () => {
   return (
-    <main className="col-span-8">
+    <main className="p-4">
       <Form />
     </main>
   )
