@@ -12,12 +12,14 @@ export function ChatBox({ messages }: { messages: Message[] }) {
   }, [messages])
 
   return (
-    <section
-      ref={ref}
-      className="row-span-9 overflow-y-scroll scrollbar-hide py-3"
-    >
+    <section ref={ref} className="overflow-y-scroll scrollbar-hide py-3">
       {messages?.map((msg, index) => (
-        <MessageBubble key={index} from={msg.from} message={msg.message} />
+        <MessageBubble
+          key={index}
+          from={msg.from}
+          message={msg.message}
+          time={msg.time}
+        />
       ))}
     </section>
   )

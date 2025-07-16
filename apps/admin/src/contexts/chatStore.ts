@@ -1,9 +1,11 @@
 import { io, type Socket } from 'socket.io-client'
 import { create } from 'zustand'
+import { getTime } from '../lib/utils'
 
 export interface Message {
   from: 'user' | 'admin'
   message: string
+  time: string
 }
 
 export interface Chat {
@@ -50,7 +52,10 @@ export const useChatStore = create<ChatStore>((set, get) => ({
           ...state.chats,
           [userId]: {
             ...existingChat,
-            messages: [...existingChat.messages, { from: 'user', message }]
+            messages: [
+              ...existingChat.messages,
+              { from: 'user', message, time: getTime() }
+            ]
           }
         }
       }
@@ -75,7 +80,10 @@ export const useChatStore = create<ChatStore>((set, get) => ({
             ...state.chats,
             [userId]: {
               ...existingChat,
-              messages: [...existingChat.messages, { from: 'admin', message }]
+              messages: [
+                ...existingChat.messages,
+                { from: 'admin', message, time: getTime() }
+              ]
             }
           }
         }

@@ -3,7 +3,7 @@ import { Navbar } from '../components/Navbar'
 
 export const RootPage = () => {
   return (
-    <main className="min-h-dvh flex flex-col">
+    <main className="max-h-dvh grid grid-rows-[auto_1fr]">
       <Navbar />
       <Outlet />
     </main>

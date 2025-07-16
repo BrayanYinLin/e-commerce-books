@@ -23,9 +23,9 @@ export function ChatPage() {
   }, [])
 
   return (
-    <main className="p-4 flex grow">
+    <main className="h-full grid grid-cols-[0.6fr_2fr] overflow-hidden gap-4 p-4">
       <ChatList chats={parseChatData(chats)} />
-      <div className="grid grid-rows-10 w-2/6 mx-auto">
+      <div className="grid grid-rows-[1fr_auto] overflow-hidden">
         {currentChat ? (
           <ChatBox messages={currentChat.messages} />
         ) : (

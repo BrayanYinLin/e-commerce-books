@@ -16,12 +16,12 @@ export function ChatInput({ onSendMessage }: ChatInputProps) {
   }
 
   return (
-    <form className="flex gap-2 row-span-1" onSubmit={resetInput}>
+    <form className="w-full flex gap-2 p-2" onSubmit={resetInput}>
       <input
         type="text"
         placeholder="Type here"
         name="message"
-        className="input"
+        className="input grow"
       />
       <button type="submit" className="btn">
         Enviar
