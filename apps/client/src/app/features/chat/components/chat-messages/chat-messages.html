@@ -1,14 +1,8 @@
 <div *ngFor="let message of chatState.messages()">
-  <div class="chat" [ngClass]="{ 'chat-start': message.from === 'client', 'chat-end': message.from === 'user' }">
-    <div class="chat-image avatar">
-      <div class="w-10 rounded-full">
-        <img
-          alt="Tailwind CSS chat bubble component"
-          [src]="message.from === 'user' ? 'https://img.daisyui.com/images/profile/demo/kenobee@192.webp' : 'https://img.daisyui.com/images/profile/demo/anakeen@192.webp'" />
-      </div>
-    </div>
+  <div class="chat" [ngClass]="{ 'chat-start': message.from === 'admin', 'chat-end': message.from === 'user' }">
     <div class="chat-header">
       {{ message.from === 'user' ? 'Cliente' : 'Admin' }}
+      <time className="text-xs opacity-50">{{ message.time }}</time>
     </div>
     <div class="chat-bubble bg-gray-800">{{ message.text }}</div>
   </div>
