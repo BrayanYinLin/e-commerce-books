@@ -18,8 +18,8 @@ export class ChatStateService {
   
   addMessage(message: { text: string, from: string }) {
     this.messages.update(msgs => [...msgs, {
-      from: message.text,
-      text: message.from,
+      from: message.from,
+      text: message.text,
       time: this.getDate()
     }]);
   }
