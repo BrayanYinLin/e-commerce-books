@@ -30,6 +30,11 @@ export const useChatStore = create<ChatStore>((set, get) => ({
   chats: {},
   currentChat: null,
   connect: () => {
+    const prevSocket = get().socket
+    if (prevSocket) {
+      prevSocket.off('admin:receive')
+      prevSocket.disconnect()
+    }
     const socket = io('http://localhost:3000')
 
     socket.emit(
