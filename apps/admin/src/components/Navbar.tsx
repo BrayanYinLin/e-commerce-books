@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { SearchProduct } from './SearchProduct'
 //[&>*]:p-3
 export function Navbar() {
   return (
@@ -32,7 +33,7 @@ export function Navbar() {
             <div className="mx-2 flex-1 px-2">Admin Panel</div>
             <div className="hidden flex-none lg:block">
               <ul className="menu menu-horizontal">
-                {/* Navbar menu content here */}
+                <SearchProduct />
                 <li>
                   <Link
                     to="/"
@@ -68,7 +69,7 @@ export function Navbar() {
             className="drawer-overlay"
           ></label>
           <ul className="menu bg-base-200 min-h-full w-80 p-4">
-            {/* Sidebar content here */}
+            <SearchProduct />
             <li>
               <Link
                 to="/"

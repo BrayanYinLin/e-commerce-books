@@ -6,6 +6,7 @@ interface ProductStore {
   loading: boolean
   error: Error | null
   fetchProducts: () => Promise<void>
+  fetchByName: (name: string) => Promise<void>
   createProduct: (product: Omit<Product, 'id'>) => Promise<Product | null>
   updateProduct: (product: Product) => Promise<Product | null>
   deleteProduct: (id: string) => Promise<void>
@@ -89,6 +90,23 @@ export const useProductStore = create<ProductStore>((set, get) => ({
     } catch (e) {
       set({
         error: e instanceof Error ? e : new Error('An error occurred')
+      })
+    }
+  },
+  fetchByName: async (name: string) => {
+    set({ loading: true, error: null })
+    try {
+      const response = await fetch(`http://localhost:3000/api/products/${name}`)
+      const data = await response.json()
+      set({ products: data, loading: false })
+    } catch (error) {
+      console.error('Error fetching products by name:', error)
+      set({
+        error:
+          error instanceof Error
+            ? error
+            : new Error('Hubo un errore inesperado'),
+        loading: false
       })
     }
   }

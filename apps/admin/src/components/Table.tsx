@@ -3,11 +3,13 @@ import { useProductStore } from '../contexts/productStore'
 import { ErrorAlert } from './ErrorAlert'
 import { LoaderRow } from './LoaderRow'
 import { Row } from './Row'
+import { InfoIcon } from './Icons'
 export const Table = () => {
   const { products, loading, error, fetchProducts } = useProductStore()
 
   useEffect(() => {
     fetchProducts()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -27,20 +29,32 @@ export const Table = () => {
         <tbody>
           {loading && <LoaderRow />}
 
-          {error && (
+          {error ? (
             <ErrorAlert message={error && 'Hubo un error inesperado'} />
+          ) : (
+            products.length > 0 &&
+            products.map(({ id, name, price, stock, image }) => (
+              <Row
+                key={id}
+                id={id}
+                name={name}
+                price={price}
+                stock={stock}
+                image={image}
+              />
+            ))
           )}
 
-          {products.map(({ id, name, price, stock, image }) => (
-            <Row
-              key={id}
-              id={id}
-              name={name}
-              price={price}
-              stock={stock}
-              image={image}
-            />
-          ))}
+          {products.length === 0 && !loading && (
+            <tr>
+              <td colSpan={5}>
+                <div role="alert" className="alert">
+                  <InfoIcon />
+                  <span>No se hallo el producto</span>
+                </div>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

@@ -18,7 +18,7 @@ class ProductController implements ProductCtrl {
   async findByName(req: Request, res: Response): Promise<Response> {
     const { name } = req.params
     const foundProducts = await this.product.find({
-      name: new RegExp(`^${name}$`, 'i')
+      name: new RegExp(name, 'i')
     })
 
     return res.status(200).json(foundProducts)
