@@ -13,7 +13,7 @@ interface Message {
   providedIn: 'root'
 })
 export class ServiceChat {
-  private socket: Socket
+  private socket: Socket | null = null
   private identifier: string
   private messageSubject: Subject<Message> = new Subject<Message>();
   message$ = this.messageSubject.asObservable()
@@ -21,6 +21,11 @@ export class ServiceChat {
 
   constructor() {
     this.identifier = crypto.randomUUID().replace('-', '').slice(0, 10)
+    const prevSocket = this.socket
+    if (prevSocket) {
+      prevSocket.off('admin:receive')
+      prevSocket.disconnect()
+    }
     this.socket = io('http://localhost:3000')
     this.socket.emit('register', JSON.stringify({ role: 'user', id: this.identifier }))
     this.socket.on('user:receive', ({ message }) => {
@@ -29,7 +34,7 @@ export class ServiceChat {
   }
 
   sendMessage(message: string) {
-    this.socket.emit('user:message', JSON.stringify({
+    this.socket!.emit('user:message', JSON.stringify({
       id: this.identifier,
       message
     }))
