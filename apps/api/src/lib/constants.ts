@@ -1,6 +1,10 @@
 import { join } from 'node:path'
 
-export const STATIC_PATH = join(__dirname, '../../../client/dist/admin/browser')
+export const STATIC_CLIENT_PATH = join(
+  __dirname,
+  '../../../client/dist/admin/browser'
+)
+export const STATIC_ADMIN_PATH = join(__dirname, '../../../admin/dist')
 
 export const EVENTS = {
   USER_MESSAGE: 'user:message',

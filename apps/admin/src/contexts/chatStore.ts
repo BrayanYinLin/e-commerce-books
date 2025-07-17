@@ -32,15 +32,28 @@ export const useChatStore = create<ChatStore>((set, get) => ({
   chats: {},
   currentChat: null,
   connect: () => {
+    const storedId = localStorage.getItem('admin_id') || crypto.randomUUID()
+    localStorage.setItem('admin_id', storedId)
+
+    const userData = {
+      role: 'admin',
+      id: storedId,
+      origin: 'react'
+    }
+
     const prevSocket = get().socket
     if (prevSocket) {
       prevSocket.off('admin:receive')
       prevSocket.disconnect()
     }
-    const socket = io('http://localhost:3000')
-    
+    const socket = io('http://localhost:3000', {
+      autoConnect: true
+    })
+
+    // Primero configuras los eventos
     socket.on('connect', () => {
       set({ isConnected: true })
+      socket.emit('register', JSON.stringify(userData))
     })
 
     socket.on('disconnect', () => {
@@ -52,15 +65,11 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       set({ isConnected: false })
     })
 
-    socket.emit(
-      'register',
-      JSON.stringify({ role: 'admin', id: crypto.randomUUID() })
-    )
-
     socket.on('admin:receive', ({ id, message }) => {
       get().recieveMessage(id, message)
     })
 
+    // Y recién aquí lo guardas en el estado global
     set({ socket })
   },
   recieveMessage: (userId, message) => {

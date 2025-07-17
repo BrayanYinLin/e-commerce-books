@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "keywords": [],
   "workspaces": [
-    "apps/client",
-    "apps/api"
+    "apps/*"
   ],
   "author": "Brayan Yin Lin",
   "license": "ISC",

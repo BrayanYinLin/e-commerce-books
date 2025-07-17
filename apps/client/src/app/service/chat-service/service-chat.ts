@@ -22,14 +22,21 @@ export class ServiceChat {
 
   constructor() {
     this.identifier = crypto.randomUUID().replace('-', '').slice(0, 10)
+
+    const userData = { role: 'user', id: this.identifier, origin: 'angular' }
+
     const prevSocket = this.socket
+
     if (prevSocket) {
       prevSocket.off('admin:receive')
       prevSocket.disconnect()
     }
+
     this.socket = io('http://localhost:3000')
-     this.socket.on('connect', () => {
+
+    this.socket.on('connect', () => {
       this.connectionState = true
+      this.socket?.emit('register', JSON.stringify(userData))
     })
 
     this.socket.on('disconnect', () => {
@@ -40,7 +47,7 @@ export class ServiceChat {
       this.connectionState = false
     })
 
-    this.socket.emit('register', JSON.stringify({ role: 'user', id: this.identifier }))
+    
     this.socket.on('user:receive', ({ message }) => {
       this.messageSubject.next({ from: 'admin', message })
     })

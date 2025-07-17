@@ -73,6 +73,17 @@ class ProductController implements ProductCtrl {
 
     return res.status(201).json(product)
   }
+
+  async delete(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
+    const deleted = await this.product.findOneAndDelete({ id })
+
+    if (!deleted) {
+      return res.status(400).json({ message: 'There was an error' })
+    }
+
+    return res.status(200).json(deleted)
+  }
 }
 
 export { ProductController }

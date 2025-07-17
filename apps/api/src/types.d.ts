@@ -15,4 +15,5 @@ export interface ProductCtrl {
   buy(req: Request, res: Response): Promise<Response>
   create(req: Request, res: Response): Promise<Response>
   edit(req: Request, res: Response): Promise<Response>
+  delete(req: Request, res: Response): Promise<Response>
 }

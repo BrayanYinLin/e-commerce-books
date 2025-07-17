@@ -11,6 +11,7 @@ export const injectController = (controller: ProductCtrl) => {
   productRouter.post('/', controller.create.bind(controller))
   productRouter.put('/:id', controller.edit.bind(controller))
   productRouter.post('/buy/:id', controller.buy.bind(controller))
+  productRouter.delete('/:id', controller.delete.bind(controller))
 
   return productRouter
 }

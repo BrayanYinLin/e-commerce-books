@@ -12,17 +12,15 @@ export const setupSocket = (server: HTTPServer) => {
   })
 
   io.on('connection', (socket) => {
-    console.log(`Cliente conectado: ${socket.id}`)
-
     socket.on(EVENTS.REGISTER, (data) => {
-      const { role, id } = JSON.parse(data)
+      const { role, id, origin } = JSON.parse(data)
 
-      console.log(data)
+      console.log({ role, id, origin })
       if (role === 'user') {
-        console.log(`Usuario registrado: ${id}`)
+        console.log(`Usuario registrado con ID: ${id}`)
         socket.join(`user:${id}`)
       } else if (role === 'admin') {
-        console.log(`Admin registrado: ${id}`)
+        console.log(`Admin registrado con ID: ${id}`)
         socket.join('admins')
       }
     })
