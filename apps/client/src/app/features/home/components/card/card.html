@@ -8,12 +8,23 @@
         <div class="card-body">
             <div class="flex justify-between items-start mb-2">
                 <h2 class="card-title text-lg font-semibold">{{ name() }}</h2>
-                <span class="badge badge-secondary font-semibold">S/{{ price() }}</span>
+                <span class="badge badge-secondary font-semibold">S/{{ price()
+                    }}</span>
             </div>
-            <p>Stock: {{ stock() }}</p>
-            <div class="card-actions justify-end">
-                <button (click)="buy()" class="btn btn-sm btn-primary p-3">Comprar</button>
+            <p *ngIf="stock(); else outOfStock">Stock: {{ stock() }}</p>
+            <div class="card-actions justify-end"
+                *ngIf="stock() > 0 ">
+                <button (click)="buy()"
+                    class="btn btn-sm p-3" [ngClass]="{
+                        'btn-success': bought,
+                        'btn-primary': !bought
+                    }">{{ this.bought ? 'Exito' : 'Comprar' }}</button>
             </div>
+            <ng-template #outOfStock>
+                <div class="card-actions justify-end mt-8">
+                    <button class="btn btn-sm btn-disabled p-3">Agotado</button>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

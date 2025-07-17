@@ -3,10 +3,11 @@ import { ChatMessages } from "../../components/chat-messages/chat-messages";
 import { ChatInputs } from "../../components/chat-inputs/chat-inputs";
 import { RouterLink } from '@angular/router';
 import { ServiceChat } from '../../../../service/chat-service/service-chat';
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-chat-page',
-  imports: [ChatMessages, ChatInputs, RouterLink],
+  imports: [ChatMessages, ChatInputs, RouterLink, CommonModule],
   templateUrl: './chat-page.html',
   styles: ``
 })  
@@ -24,7 +25,7 @@ export class ChatPage {
     }
   }
 
-  constructor(private serviceChat: ServiceChat) {
+  constructor(public serviceChat: ServiceChat) {
 
   }
 
