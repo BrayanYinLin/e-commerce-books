@@ -6,7 +6,7 @@ import { useChatStore } from '../contexts/chatStore'
 import { parseChatData } from '../lib/utils'
 
 export function ChatPage() {
-  const { chats, currentChat, sendMessageToUser, connect } = useChatStore()
+  const { chats, currentChat, sendMessageToUser, connect, isConnected } = useChatStore()
 
   const handleSendMessage = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -24,7 +24,7 @@ export function ChatPage() {
 
   return (
     <main className="h-full grid grid-cols-[0.6fr_2fr] overflow-hidden gap-4 p-4">
-      <ChatList chats={parseChatData(chats)} />
+      <ChatList chats={parseChatData(chats)} connectionState={isConnected} />
       <div className="grid grid-rows-[1fr_auto] overflow-hidden">
         {currentChat ? (
           <ChatBox messages={currentChat.messages} />

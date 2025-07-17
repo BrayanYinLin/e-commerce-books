@@ -14,6 +14,7 @@ export interface Chat {
 }
 
 interface ChatStore {
+  isConnected: boolean
   socket: Socket | null
   chats: Record<string, Chat>
   currentChat: Chat | null
@@ -26,6 +27,7 @@ interface ChatStore {
 }
 
 export const useChatStore = create<ChatStore>((set, get) => ({
+  isConnected: false,
   socket: null,
   chats: {},
   currentChat: null,
@@ -36,6 +38,19 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       prevSocket.disconnect()
     }
     const socket = io('http://localhost:3000')
+    
+    socket.on('connect', () => {
+      set({ isConnected: true })
+    })
+
+    socket.on('disconnect', () => {
+      set({ isConnected: false })
+    })
+
+    socket.on('connect_error', (err) => {
+      console.error('🚫 Error al conectar:', err.message)
+      set({ isConnected: false })
+    })
 
     socket.emit(
       'register',

@@ -13,6 +13,7 @@ interface Message {
   providedIn: 'root'
 })
 export class ServiceChat {
+  public connectionState: boolean = false
   private socket: Socket | null = null
   private identifier: string
   private messageSubject: Subject<Message> = new Subject<Message>();
@@ -27,6 +28,18 @@ export class ServiceChat {
       prevSocket.disconnect()
     }
     this.socket = io('http://localhost:3000')
+     this.socket.on('connect', () => {
+      this.connectionState = true
+    })
+
+    this.socket.on('disconnect', () => {
+      this.connectionState = false
+    })
+
+    this.socket.on('connect_error', (err) => {
+      this.connectionState = false
+    })
+
     this.socket.emit('register', JSON.stringify({ role: 'user', id: this.identifier }))
     this.socket.on('user:receive', ({ message }) => {
       this.messageSubject.next({ from: 'admin', message })
