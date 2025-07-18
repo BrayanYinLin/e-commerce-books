@@ -32,7 +32,7 @@ git checkout -b feature/nombre-claro
 Formato:
 
 ```
-<tipo>: descripción clara
+<tipo>(paquete / root): descripción clara
 ```
 
 Tipos válidos:
@@ -47,16 +47,16 @@ Tipos válidos:
 
 Ejemplos:
 
-* `feat: agregar registro de usuarios en admin`
-* `fix: corregir validación de login en API`
-* `docs: agregar guía de instalación en README`
+* `feat(admin): agregar registro de usuarios en admin`
+* `fix(api): corregir validación de login en API`
+* `docs(root): agregar guía de instalación en README`
 
 ---
 
 ## 🔀 Pull Requests
 
-* PR desde tu rama hacia `main` o `dev` (según se defina)
-* Título claro: `feat: implementar carrito en cliente Angular`
+* PR desde tu rama hacia `main`
+* Título claro: `feat(client): implementar carrito en cliente Angular`
 * Descripción debe incluir:
 
   * ✅ Qué se hizo
@@ -65,7 +65,7 @@ Ejemplos:
 
 ---
 
-<!-- ## 🧹 Linting por Proyecto
+## 🧹 Linting por Proyecto
 
 * Cada app (`admin`, `api`, `client`) tiene su propio `.eslintrc`
 * Instala **solo los plugins necesarios** en cada uno
@@ -73,14 +73,13 @@ Ejemplos:
 
 ```bash
 # Desde la carpeta correspondiente
-pnpm lint
+npm lint
 # o
 npm run lint
 ```
 
 Angular usa `ng lint`, asegúrate de respetar su configuración.
 
---- -->
 
 ## ✅ Buenas prácticas
 
