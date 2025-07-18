@@ -50,6 +50,14 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       autoConnect: true
     })
 
+    const recoveredChats = localStorage.getItem('chats')
+
+    if (recoveredChats) {
+      set({
+        chats: JSON.parse(recoveredChats) ?? {}
+      })
+    }
+
     // Primero configuras los eventos
     socket.on('connect', () => {
       set({ isConnected: true })
@@ -90,6 +98,8 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       }
     })
 
+    localStorage.setItem('chats', JSON.stringify(get().chats))
+
     const currentUserActive = get().currentChat?.userId
 
     if (currentUserActive) {
@@ -117,6 +127,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
           }
         }
       })
+      localStorage.setItem('chats', JSON.stringify(get().chats))
       get().getChat(userId)
     }
   },
